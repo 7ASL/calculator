@@ -25,6 +25,7 @@ button {
 #display-container, #buttons-container {
     width: 450px;
     padding: 10px 20px;
+    margin: 5px 0;
 }
 
 #display-container {
