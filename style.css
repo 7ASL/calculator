@@ -28,24 +28,31 @@ button {
 }
 
 #display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     box-sizing: border-box;
     border: 3px solid black;
     box-shadow: 5px 5px black;
-    min-height: 120px;
+    min-height: 100px;
 }
 
 .display {
     text-align: right;
     font-weight: bold;
-    margin: 10px 0;
+    gap: 10px 0;
 }
 
 #display-previous {
     font-size: larger;
+    min-height: 30px;
+    line-height: 1.4;
 }
 
 #display-current {
     font-size: xx-large;
+    min-height: 40px;
+    line-height: 1.4;
 }
 
 #buttons-container {
@@ -74,7 +81,7 @@ button:hover {
     font-size: large;
 }
 
-#buttons-container > button#num0 {
+#buttons-container > button.double {
     flex: 0 0 calc(50% - (var(--gap) / 2));
 }
 
