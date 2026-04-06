@@ -15,6 +15,11 @@ let calculator = {
 	numberTwo: "",
 };
 
+function normalizeResult(value, places = 12) {
+	const factor = 10 ** places;
+	return Math.round((value + Number.EPSILON) * factor) / factor;
+}
+
 function add(a, b) {
 	return a + b;
 }
@@ -57,7 +62,7 @@ function operate() {
 			result = modulo(+calculator.numberTwo, +calculator.numberOne);
 			break;
 	}
-	return String(result);
+	return String(normalizeResult(result));
 }
 
 function handleClear(target) {
@@ -95,6 +100,14 @@ function handleCalculate(target) {
 
 function handleNumberInput(target) {
 	if (target.classList.contains("number")) {
+		if (target.dataset.value === ".") {
+			if(calculator.numberOne.includes(".")) {
+				return;
+			}
+			if(calculator.numberOne === "") {
+				calculator.numberOne += "0";
+			}
+		}
 		calculator.numberOne += target.dataset.value;
 		primaryDisplay.textContent = calculator.numberOne;
 		if (calculator.state === STATES.OPERATOR_CHOSEN) {
@@ -147,7 +160,6 @@ function handleClick(target) {
 			handleCalculate(target);
 			break;
 	}
-	console.log(target.dataset.value);
 }
 
 buttons.addEventListener("click", (e) => {
