@@ -8,6 +8,30 @@ const STATES = {
 	WAITING_FOR_SECOND_NUMBER: "second_operand",
 };
 
+const KEY_MAP = {
+	"0" : "0",
+	"1" : "1",
+	"2" : "2",
+	"3" : "3",
+	"4" : "4",
+	"5" : "5",
+	"6" : "6",
+	"7" : "7",
+	"8" : "8",
+	"9" : "9",
+	"+" : "+",
+	"-" : "-",
+	"*" : "*",
+	"/" : "/",
+	"%" : "%",
+	"=" : "operate",
+	"Enter" : "operate",
+	"." : ".",
+	"Backspace" : "delete",
+	"Escape" : "clear", 
+	"Delete" : "clear",
+}
+
 let calculator = {
 	state: STATES.WAITING_FOR_FIRST_NUMBER,
 	numberOne: "",
@@ -167,3 +191,14 @@ buttons.addEventListener("click", (e) => {
 		handleClick(e.target);
 	}
 });
+
+document.addEventListener("keydown", (e) => {
+	const value = KEY_MAP[e.key];
+	if (!value) return;
+
+	const button = document.querySelector(`[data-value = "${value}"]`);
+	if (!button) return;
+
+	e.preventDefault();
+	handleClick(button);
+})
