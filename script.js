@@ -34,6 +34,10 @@ function divide(a, b) {
 	return a / b;
 }
 
+function modulo(a, b){
+	return a % b;
+}
+
 function operate() {
 	let result;
 	switch (calculator.operator) {
@@ -48,6 +52,9 @@ function operate() {
 			break;
 		case "/":
 			result = divide(+calculator.numberTwo, +calculator.numberOne);
+			break;
+		case "%":
+			result = modulo(+calculator.numberTwo, +calculator.numberOne);
 			break;
 	}
 	return String(result);
